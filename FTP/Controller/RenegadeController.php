@@ -27,6 +27,8 @@
 			}
 			
 			// Render the index screen
-			return $this->render('FTPBundle::index.html.twig');
+			return $this->render('FTPBundle::index.html.twig', array(
+				'id' => $id,
+			));
 		}
 	}
