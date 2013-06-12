@@ -26,7 +26,7 @@
 				->add('Password','password', array('attr'=>array('placeholder'=>'Password')))
 				->getForm();
 			
-			$db = new Database();
+			/*$db = new Database();
 			$db->query('SELECT * FROM users');
 			
 			$emails = array();
@@ -44,6 +44,14 @@
 				'emails' => $emails,
 				'pass' => $passwords,
 				'num' => $num,
+			));*/
+			
+			// Render the login form
+			return $this->render("FTPBundle::login.html.twig", array(
+				'form' => $form->createView(),
+				'emails' => array('It'),
+				'pass' => array('Works!'),
+				'num' => '1',
 			));
 		}
 		
@@ -60,13 +68,12 @@
 				$form->bind($req);
 				
 				// Connect to the database
-				$db = new Database();
+				//$db = new Database();
 				
 				// Query the database, try to find the user entered
-				$db->query("SELECT * FROM users WHERE username='".$form->get('Email')->getData()."' AND password='".$form->get('Password')->getData()."'");
+				//$db->query("SELECT * FROM users WHERE username='".$form->get('Email')->getData()."' AND password='".$form->get('Password')->getData()."'");
 				
-				return $this->redirect($this->generateUrl('_login'), array('test'=>'test'));			
-				//return $this->foward($this->generateUrl('_login'), array('test'=>'test'));
+				return $this->redirect($this->generateUrl('_login'));
 			}
 		}
 				

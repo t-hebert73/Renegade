@@ -16,7 +16,8 @@
 		// Constructor
 		function __construct(){
 			// Connect to the databse
-			$this->con = mysqli_connect( 'localhost', 'root', 'miguel', 'Renegade' );
+			// Add the database information down below
+			$this->con = mysqli_connect( '', '', '', '' );
 			if( mysqli_connect_errno() == true ){
 				// Could not establish a connection with the database
 				$this->con = false;
