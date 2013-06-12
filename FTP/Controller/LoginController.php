@@ -1,7 +1,7 @@
 <?php
 	/**
 	* Author : Miguel Mawyin
-	* Last Modified : June 11, 2013
+	* Last Modified : June 12, 2013
 	* Description : This controller is split into two sections determined primerly by the HTML request.
 	*				If the request is GET, then the controlller will display a login screen.
 	*				If the request is a POST, then the controller will validate the user.
@@ -28,8 +28,8 @@
 				// Create a new user and build a form
 				$user = new User();
 				$form = $this->createFormBuilder($user)
-					->add('Email','text', array('attr'=>array('placeholder'=>'Email')))
-					->add('Password','password', array('attr'=>array('placeholder'=>'Password')))
+					->add('Email','text', array('attr'=>array('placeholder'=>'Email', 'class'=>'input-xlarge')))
+					->add('Password','password', array('attr'=>array('placeholder'=>'Password', 'class'=>'input-xlarge')))
 					->getForm();
 			
 				// Render the login form
