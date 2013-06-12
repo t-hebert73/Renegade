@@ -26,7 +26,7 @@
 				->add('Password','password', array('attr'=>array('placeholder'=>'Password')))
 				->getForm();
 			
-			/*$db = new Database();
+			$db = new Database();
 			$db->query('SELECT * FROM users');
 			
 			$emails = array();
@@ -44,14 +44,6 @@
 				'emails' => $emails,
 				'pass' => $passwords,
 				'num' => $num,
-			));*/
-			
-			// Render the login form
-			return $this->render("FTPBundle::login.html.twig", array(
-				'form' => $form->createView(),
-				'emails' => array('It'),
-				'pass' => array('Works!'),
-				'num' => '1',
 			));
 		}
 		
