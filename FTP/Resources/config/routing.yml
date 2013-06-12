@@ -1,0 +1,13 @@
+_index:
+    path: /
+    defaults: { _controller: FTPBundle:Renegade:index }
+
+_login:
+    path: /login
+    defaults: { _controller: FTPBundle:Login:login }
+    methods: GET
+
+_validate:
+    path: /login
+    defaults: { _controller: FTPBundle:Login:validate }
+    methods: POST

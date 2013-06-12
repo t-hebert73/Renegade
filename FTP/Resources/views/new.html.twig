@@ -1,0 +1,16 @@
+{% extends "FTPBundle::layout.html.twig" %}
+{% block title %}Client Page{% endblock %}
+
+{% block content %}
+	<div style="background-color:white; border:1px solid #ddd; border-radius:5px; padding-left:10px;">
+		<h1> Create a Client </h1>
+		<form action="{{ path('task_success') }}" method="post" {{ form_enctype(form) }}>
+			<table>
+				<tr><td>{{ form_widget(form.Email) }}</td><td>{{ form_errors(form.Email) }}</td></tr>
+				<tr><td>{{ form_widget(form.Password) }}</td><td>{{ form_errors(form.Password) }}</td></tr>
+			</table>
+			<input class="btn" type="submit" value="Create Client" />
+		</form>
+	</div>
+{% endblock %}
+
