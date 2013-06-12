@@ -15,3 +15,10 @@ _validate:
 _logoff:
     path: /logoff
     defaults: { _controller: FTPBundle:Login:logout }
+
+_user:
+    path: /user
+    defaults: { _controller: FTPBundle:User:view }
+
+#_user_create:
+#path: /user/create

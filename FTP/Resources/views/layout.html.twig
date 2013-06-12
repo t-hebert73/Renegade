@@ -28,6 +28,7 @@
 					<ul class="nav">
 						{% if id is defined %}
 							<li><a href="./">Home</a></li>
+							<li><a href="{{ path('_user') }}">Account</a></li>
 							<li><a href="{{ path('_logoff') }}">Logoff</a></li>
 						{% else %}
 							<li><a href="#">Login</a></li>
