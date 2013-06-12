@@ -18,6 +18,7 @@
 		{
 			// Check if a user has logged in already
 			$session = new Session();
+			$session->start();
 			$id = $session->get('id');
 			
 			if( $id == null ){

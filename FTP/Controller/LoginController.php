@@ -20,17 +20,27 @@
 		//	Login action
 		//	Called when a GET is requested
 		public function loginAction(){
-			// Create a new user and build a form
-			$user = new User();
-			$form = $this->createFormBuilder($user)
-				->add('Email','text', array('attr'=>array('placeholder'=>'Email')))
-				->add('Password','password', array('attr'=>array('placeholder'=>'Password')))
-				->getForm();
+			// Check if a user is already logged in
+			$session = $this->getRequest()->getSession();
+			$id = $session->get('id');
 			
-			// Render the login form
-			return $this->render("FTPBundle::login.html.twig", array(
-				'form' => $form->createView(),
-			));
+			if( $id == null ){		
+				// Create a new user and build a form
+				$user = new User();
+				$form = $this->createFormBuilder($user)
+					->add('Email','text', array('attr'=>array('placeholder'=>'Email')))
+					->add('Password','password', array('attr'=>array('placeholder'=>'Password')))
+					->getForm();
+			
+				// Render the login form
+				return $this->render("FTPBundle::login.html.twig", array(
+					'form' => $form->createView(),
+				));
+			}
+			
+			// User logged in
+			// Go back to the main controller
+			return $this->redirect( $this->generateUrl('_index') );
 		}
 		
 		// Validation action
@@ -59,7 +69,7 @@
 					$user = $db->fetch();
 					
 					// Set the session of the userID
-					$session = new Session();
+					$session = $this->getRequest()->getSession();
 					$session->set('id', $user['userID']);
 					
 					// Back to the renegade controller
@@ -75,5 +85,14 @@
 					'error' => $error,
 				));
 			}
+		}
+		
+		public function logoutAction(){
+			// Log the user out
+			$session = $this->getRequest()->getSession();
+			$session->clear();
+			
+			// Go back to the main controller
+			return $this->redirect( $this->generateUrl('_index') );
 		}
 	}

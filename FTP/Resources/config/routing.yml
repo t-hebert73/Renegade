@@ -11,3 +11,7 @@ _validate:
     path: /login
     defaults: { _controller: FTPBundle:Login:validate }
     methods: POST
+
+_logoff:
+    path: /logoff
+    defaults: { _controller: FTPBundle:Login:logout }
