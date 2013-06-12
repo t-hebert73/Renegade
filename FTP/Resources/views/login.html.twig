@@ -4,6 +4,7 @@
 {% block content %}
 	<div style="background-color:white; border:1px solid #ddd; border-radius:5px; padding-left:10px;">
 		<h2>Please Login</h2>
+		<h5 class='text-error'>{% if error is defined %} {{error }} {% endif %}</h5>
 		<form action="{{ path('_validate') }}" method="post">
 			<table>
 				<tr><td>{{ form_widget(form.Email) }}</td><td>{{ form_errors(form.Email) }}</td></tr>
@@ -11,10 +12,5 @@
 			</table>
 			<button class="btn" type="submit">Login</button>
 		</form>
-		<table>
-		{% for i in range(0,num-1) %}
-			<tr><td>{{ emails[i] }}</td><td>{{ pass[i] }}</td></tr>
-		{% endfor %}
-		</table>
 	</div>
 {% endblock %}

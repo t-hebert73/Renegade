@@ -26,27 +26,14 @@
 				->add('Password','password', array('attr'=>array('placeholder'=>'Password')))
 				->getForm();
 			
-			$db = new Database();
-			$db->query('SELECT * FROM users');
-			
-			$emails = array();
-			$passwords = array();
-			$num = 0;
-			while($r = $db->fetch()){
-				$emails[] = $r['username'];
-				$passwords[] = $r['password'];
-				$num = $num + 1;
-			}
-			
 			// Render the login form
 			return $this->render("FTPBundle::login.html.twig", array(
 				'form' => $form->createView(),
-				'emails' => $emails,
-				'pass' => $passwords,
-				'num' => $num,
 			));
 		}
 		
+		// Validation action
+		// Called when a POST is requested
 		public function validateAction(Request $req){
 			if($req->isMethod('POST')){
 				// Create the user
@@ -60,16 +47,23 @@
 				$form->bind($req);
 				
 				// Connect to the database
-				//$db = new Database();
+				$db = new Database();
 				
 				// Query the database, try to find the user entered
-				//$db->query("SELECT * FROM users WHERE username='".$form->get('Email')->getData()."' AND password='".$form->get('Password')->getData()."'");
+				$db->query("SELECT * FROM users WHERE username='".$form->get('Email')->getData()."' AND password='".$form->get('Password')->getData()."'");
+			
+				if( $db->rows == 1 ){
+					// User logged in
+				}
 				
-				return $this->redirect($this->generateUrl('_login'));
+				// The error message
+				$error = 'Wrong username or password. Please try again';				
+				
+				// Render the login form with the error
+				return $this->render("FTPBundle::login.html.twig", array(
+					'form' => $form->createView(),
+					'error' => $error,
+				));
 			}
-		}
-				
-		public function successAction(){
-			return $this->render('FTPBundle:Default:success.html.twig');
 		}
 	}
