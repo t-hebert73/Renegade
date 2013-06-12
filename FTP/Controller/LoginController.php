@@ -12,6 +12,7 @@
 	use Renegade\FTP\Entity\Database;
 	use Symfony\Component\HttpFoundation\Request;
 	use Symfony\Component\HttpFoundation\Response;
+	use Symfony\Component\HttpFoundation\Session\Session;
 	use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 	
 	class LoginController extends Controller
@@ -54,6 +55,15 @@
 			
 				if( $db->rows == 1 ){
 					// User logged in
+					// Get the user
+					$user = $db->fetch();
+					
+					// Set the session of the userID
+					$session = new Session();
+					$session->set('id', $user['userID']);
+					
+					// Back to the renegade controller
+					return $this->redirect($this->generateUrl('_index'));
 				}
 				
 				// The error message

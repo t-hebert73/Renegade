@@ -2,15 +2,15 @@
 {% block title %}Login Page{% endblock %}
 
 {% block content %}
-	<div style="background-color:white; border:1px solid #ddd; border-radius:5px; padding-left:10px;">
-		<h2>Please Login</h2>
-		<h5 class='text-error'>{% if error is defined %} {{error }} {% endif %}</h5>
+	<div class='section centered'>
+		<h3>Sign in</h3>
+		<h5 class='text-error'>{% if error is defined %}{{ error }}{% endif %}</h5>
 		<form action="{{ path('_validate') }}" method="post">
 			<table>
-				<tr><td>{{ form_widget(form.Email) }}</td><td>{{ form_errors(form.Email) }}</td></tr>
-				<tr><td>{{ form_widget(form.Password) }}</td><td>{{ form_errors(form.Password) }}</td></tr>
+				<tr><td>{{ form_widget(form.Email) }}</td></tr>
+				<tr><td>{{ form_widget(form.Password) }}</td></tr>
 			</table>
-			<button class="btn" type="submit">Login</button>
+			<button class="btn btn-primary" type="submit">Login</button>
 		</form>
 	</div>
 {% endblock %}
