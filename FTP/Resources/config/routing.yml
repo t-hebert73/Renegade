@@ -18,7 +18,18 @@ _logoff:
 
 _user:
     path: /user
-    defaults: { _controller: FTPBundle:User:view }
+    defaults: { _controller: FTPBundle:Users:account }
 
-#_user_create:
-#path: /user/create
+_user_create:
+    path: /user/create
+    defaults: {_controller: FTPBundle:Users:getCreate }
+    methods: GET
+
+__user_create:
+    path: /user/create
+    defaults: { _controller: FTPBundle:Users:postCreate }
+    methods: POST
+
+_user_view:
+    path: /user/view
+    defaults: { _controller: FTPBundle:Users:view }

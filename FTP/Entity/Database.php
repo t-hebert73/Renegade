@@ -17,7 +17,7 @@
 		function __construct(){
 			// Connect to the databse
 			// Add the database information down below
-			$this->con = mysqli_connect( 'localhost', 'root', 'miguel', 'renegade' );
+			$this->con = mysqli_connect( 'localhost', 'root', '', 'renegade' );
 			if( mysqli_connect_errno() == true ){
 				// Could not establish a connection with the database
 				$this->con = false;
@@ -45,8 +45,14 @@
 			// Query the database
 			$this->res = mysqli_query($this->con, $q);
 			
-			// Set the number of rows
-			$this->rows = mysqli_num_rows($this->res);
+			// Set the rows
+			$this->rows = 0;
+			
+			// Check if its a select statement
+			if( strtolower($q[0]) == 's' ){
+				// Set the rows
+				$this->rows = mysqli_num_rows($this->res);
+			}
 		}
 		
 		// Fetch function the next available row of the query
