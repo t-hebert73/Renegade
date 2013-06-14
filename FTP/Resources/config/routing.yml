@@ -33,3 +33,7 @@ __user_create:
 _user_view:
     path: /user/view
     defaults: { _controller: FTPBundle:Users:view }
+
+_user_delete:
+    path: /user/delete/{id}
+    defaults: { _controller: FTPBundle:Users:delete }

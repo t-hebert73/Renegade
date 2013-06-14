@@ -10,7 +10,8 @@
 				<tr>
 					<td class='span10'>{{ users[i] }}</td>
 					<td><button class='btn btn-info'>Edit</button></td>
-					<td><button class='btn btn-danger'>Delete</button></td>
+					<!--<td><button class='btn btn-danger'>Delete</button></td>-->
+					<td><a href="{{ path('_user_delete') }}/" class='btn btn-danger'>Delete</a></td>
 				</tr>
 			{% endfor %}
 		</table>
