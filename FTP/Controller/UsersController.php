@@ -100,24 +100,21 @@
 			$db->query("SELECT * FROM users WHERE username='".$form->get('Email')->getData()."'");
 			if( $db->rows > 0 ){
 				// Account is already in use
-				$error = 'Account already registered. Please try another username.';
-				
 				// Render the template
 				return $this->render('FTPBundle::ucreate.html.twig', array(
 					'id' => $id,
 					'form' => $form->createView(),
-					'error' => $error,
+					'msg_error' => 'Account username is already in use. Please try another username.'
 				));
 			}
-			 // Create the user
-			 $db->query("INSERT INTO users (username, password, auth) VALUES ('".$form->get('Email')->getData()."', '".$form->get('Password')->getData()."', 0)");
-			 $msg = "User has been created.";
+			// Create the user
+			$db->query("INSERT INTO users (username, password, auth) VALUES ('".$form->get('Email')->getData()."', '".$form->get('Password')->getData()."', 0)");
 			
 			// Render the template
 			return $this->render('FTPBundle::ucreate.html.twig', array(
 				'id' => $id,
 				'form' => $form->createView(),
-				'msg' => $msg
+				'msg_success' => 'User has been created.'
 			));
 		}
 		
@@ -135,7 +132,7 @@
 			// Get all the users except us
 			$db->query("SELECT * FROM users WHERE userID!=".$id);
 			while( $r = $db->fetch() ){
-				$users[] = $r['username'];
+				$users[] = array('id'=>$r['userID'], 'username'=>$r['username']);
 			}
 			
 			// Render the template
@@ -143,6 +140,35 @@
 				'id' => $id,
 				'users' => $users,
 				'rows' => $db->rows
+			));
+		}
+		
+		public function deleteAction($id){
+			// Connect to the database
+			$db = new Database();
+			
+			// Delete the user
+			$db->query("DELETE FROM users WHERE userID=".$id);
+			
+			// Get the id from the session
+			$session = $this->getRequest()->getSession();
+			$id = $session->get('id');
+			
+			// The users
+			$users = array();
+			
+			// Get all the users except us+
+			$db->query("SELECT * FROM users WHERE userID!=".$id);
+			while( $r = $db->fetch() ){
+				$users[] = array('id'=>$r['userID'], 'username'=>$r['username']);
+			}
+			
+			// Render the template
+			return $this->render('FTPBundle::uview.html.twig', array(
+				'id' => $id,
+				'users' => $users,
+				'rows' => $db->rows,
+				'msg_error' => 'User deleted.'
 			));
 		}
 	}

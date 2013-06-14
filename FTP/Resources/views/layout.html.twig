@@ -25,7 +25,7 @@
 				</button>
 				<a class="brand" href="{{ path('_index') }}">Renegade</a>
 				<div class="nav-collapse collapse">
-					<p class="navbar-text pull-right">Welcome <a href="{{ path('_user') }}" class="navbar-link">admin</a>!</p>
+					<!--<p class="navbar-text pull-right">Welcome <a href="{{ path('_user') }}" class="navbar-link">admin</a>!</p>-->
 					<ul class="nav">
 						{% if id is defined %}
 							<li><a href="{{ path('_index') }}">Home</a></li>
@@ -48,6 +48,29 @@
 		</div>
 	</div>
 	
+	<div class="container">
+		{% if msg_error is defined%}
+			<div class="alert alert-danger">
+				<button type="button" class="close" data-dismiss="alert">x</button>
+				{{ msg_error }}
+			</div>
+		{% endif %}
+		
+		{% if msg_info is defined%}
+			<div class="alert alert-info">
+				<button type="button" class="close" data-dismiss="alert">x</button>
+				{{ msg_info }}
+			</div>
+		{% endif %}
+		
+		{% if msg_success is defined%}
+			<div class="alert alert-success">
+				<button type="button" class="close" data-dismiss="alert">x</button>
+				{{ msg_success }}
+			</div>
+		{% endif %}
+	</div>
+			
 	<div class="container">{% block content %}{% endblock %}</div>
 	
 	{% javascripts 
