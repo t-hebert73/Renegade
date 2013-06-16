@@ -15,9 +15,9 @@
 		
 		// Constructor
 		function __construct(){
-			// Connect to the databse
+			// Connect to the database
 			// Add the database information down below
-			$this->con = mysqli_connect( 'localhost', 'root', '', 'renegade' );
+			$this->con = mysqli_connect( 'localhost', 'root', 'root', 'renegade' );
 			if( mysqli_connect_errno() == true ){
 				// Could not establish a connection with the database
 				$this->con = false;

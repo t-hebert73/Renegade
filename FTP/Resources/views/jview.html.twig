@@ -1,0 +1,19 @@
+{% extends "FTPBundle::layout.html.twig" %}
+{% block title %}All jobs{% endblock %}
+
+{% block content %}
+	<div class='section centered'>
+		<h3>Current jobs</h3>
+		{% if rows > 0 %}
+		<table class='table table-striped table-bordered'>
+			<tr><th>Job name</th><th>Delete</th></td>
+			{% for i in 0..rows-1 %}
+				<tr>
+					<td class='span12'>{{ jobs[i].jobName }}</td>
+					<td><a href='{{ path('_job_delete', {'id':jobs[i].id}) }}' class='btn btn-danger'>Delete</a></td>
+				</tr>
+			{% endfor %}
+		</table>
+		{% endif %}
+	</div>
+{% endblock %}
