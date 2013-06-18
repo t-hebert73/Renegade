@@ -79,4 +79,20 @@
 				'msg_error' => 'Could not upload the file.'
 			));
 		}
-	}
+
+		public function downloadAction($filename){
+			
+    		$request = $this->get('request');
+    		$path = $this->get('kernel')->getRootDir(). "/../src/Renegade/FTP/Files/";
+    		$content = file_get_contents($path.$filename);
+
+    		$response = new Response();
+
+    		//set headers
+   			$response->headers->set('Content-Type', 'mime/type');
+   		 	$response->headers->set('Content-Disposition', 'attachment;filename="'.$filename);
+
+    		$response->setContent($content);
+    		return $response;
+		}
+}

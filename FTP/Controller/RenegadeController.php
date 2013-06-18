@@ -17,7 +17,7 @@
 		public function indexAction( Request $req )
 		{
 			// Check if a user has logged in already
-			$session = new Session();
+			$session = $this->getRequest()->getSession();
 			$session->start();
 			$id = $session->get('id');
 			
@@ -32,7 +32,7 @@
 			$files = array();
 			$db->query('SELECT * FROM files');
 			while( $r = $db->fetch() ){
-				$files[] = array('id'=>$r['fileID'], 'fileName'=>$r['fileName']);
+				$files[] = array('id'=>$r['fileID'], 'fileName'=>$r['fileName'], 'filePath'=>$r['filePath']);
 			}
 			
 			// Render the index screen

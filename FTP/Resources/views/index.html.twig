@@ -14,7 +14,11 @@
 			{% for i in 0..rows-1 %}
 				<tr>
 					<td class='span11'>{{ files[i].fileName }}</td>
-					<td class='span1'><a href='{{ path('_user_delete', {'id':files[i].id}) }}' class='btn btn-info'>Download</a></td>
+					
+					<td class='span1'><a href='{{ path('_file_download', {'filename':files[i].fileName}) }}' class='btn btn-danger'>Download</a></td>
+			
+					
+					
 				</tr>
 			{% endfor %}
 		</table>
