@@ -16,6 +16,17 @@
 	class FilesController extends Controller
 	{
 		public function getUploadAction(){
+				// Get the id from the session
+			$session = $this->getRequest()->getSession();
+			$id = $session->get('id');
+			
+			// Check if the user has logged in
+			if( $id == null ){
+				// No user found
+				// Return to the main controller
+				return $this->redirect($this->generateUrl('_index'));
+			}
+			
 			$file = new File();
 			$form = $this->createFormBuilder($file)
 				->add( 'Name', 'text' )
@@ -23,11 +34,23 @@
 				->getForm();
 				
 			return $this->render("FTPBundle::fupload.html.twig", array(
+				'id' => $id,
 				'form' => $form->createView(),
 			));
 		}
 		
 		public function postUploadAction(Request $req){
+				// Get the id from the session
+			$session = $this->getRequest()->getSession();
+			$id = $session->get('id');
+			
+			// Check if the user has logged in
+			if( $id == null ){
+				// No user found
+				// Return to the main controller
+				return $this->redirect($this->generateUrl('_index'));
+			}
+			
 			$file = new File();
 			$form = $this->createFormBuilder($file)
 				->add( 'Name', 'text' )
@@ -47,7 +70,9 @@
 				$db->query("INSERT INTO files (jobID, fileName, filePath, fileDescription) VALUES (1, '".$name."', '".$dir."', 'test')");
 				
 				return $this->render('FTPBundle::index.html.twig', array(
-					'msg_success' => 'File uploaded!'
+					'id' => $id,
+					'msg_success' => 'File uploaded!',
+					'rows' => $db->rows
 				));
 			}
 			return $this->render('FTPBundle::index.html.twig', array(
