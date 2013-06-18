@@ -56,4 +56,9 @@ _job_delete:
     path: /job/delete/{id}
     defaults: { _controller: FTPBundle:Jobs:delete }
     
-
+_file_upload:
+    path: /file/upload
+    defaults: { _controller: FTPBundle:Document:upload }
+    
+    
+    
