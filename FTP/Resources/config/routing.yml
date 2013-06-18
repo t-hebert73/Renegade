@@ -37,3 +37,7 @@ _user_view:
 _user_delete:
     path: /user/delete/{id}
     defaults: { _controller: FTPBundle:Users:delete }
+
+_file_upload:
+    path: /files/upload
+    defaults: { _controller: FTPBundle:Files:upload }
