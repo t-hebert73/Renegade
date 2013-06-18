@@ -51,7 +51,7 @@
 				));
 			}
 			return $this->render('FTPBundle::index.html.twig', array(
-					'msg_error' => 'Could not upload the file.'
-				));
+				'msg_error' => 'Could not upload the file.'
+			));
 		}
 	}

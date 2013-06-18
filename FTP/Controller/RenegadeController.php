@@ -6,7 +6,7 @@
 	*/
 	namespace Renegade\FTP\Controller;
 	
-	use Renegade\FTP\Entity\User;
+	use Renegade\FTP\Entity\Database;
 	use Symfony\Component\HttpFoundation\Request;
 	use Symfony\Component\HttpFoundation\Session\Session;
 	use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -27,9 +27,19 @@
 				return $this->redirect($this->generateUrl('_login'));
 			}
 			
+			$db = new Database();
+			
+			$files = array();
+			$db->query('SELECT * FROM files');
+			while( $r = $db->fetch() ){
+				$files[] = array('id'=>$r['fileID'], 'fileName'=>$r['fileName']);
+			}
+			
 			// Render the index screen
 			return $this->render('FTPBundle::index.html.twig', array(
 				'id' => $id,
+				'files' => $files,
+				'rows' => $db->rows
 			));
 		}
 	}
