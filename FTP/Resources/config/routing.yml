@@ -54,7 +54,13 @@ _user_delete:
 
 _file_upload:
     path: /files/upload
-    defaults: { _controller: FTPBundle:Files:upload }
+    defaults: { _controller: FTPBundle:Files:getUpload }
+    methods: GET
+
+__file_upload:
+    path: /files/upload
+    defaults: { _controller: FTPBundle:Files:postUpload }
+    methods: POST
     
 _job_delete:
     path: /job/delete/{id}

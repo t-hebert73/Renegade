@@ -1,0 +1,15 @@
+{% extends "FTPBundle::layout.html.twig" %}
+{% block title %}Upload File{% endblock %}
+
+{% block content %}
+	<div class='section centered'>
+		<h3>New File</h3>
+		<form action='{{ path('__file_upload') }}' method='POST' {{ form_enctype(form) }}>
+		<table class='table table-striped table-bordered'>
+			<tr><td>Name</td><td>{{ form_widget(form.Name) }}</td></tr>
+			<tr><td>File</td><td>{{ form_widget(form.File) }}</td></tr>
+		</table>
+		<button class="btn btn-primary" type="submit">Uprawr</button>
+		</form>
+	</div>
+{% endblock %}
