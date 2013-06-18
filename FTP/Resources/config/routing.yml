@@ -51,16 +51,11 @@ _job_view:
 _user_delete:
     path: /user/delete/{id}
     defaults: { _controller: FTPBundle:Users:delete }
-<<<<<<< HEAD
 
 _file_upload:
     path: /files/upload
     defaults: { _controller: FTPBundle:Files:upload }
-=======
     
 _job_delete:
     path: /job/delete/{id}
     defaults: { _controller: FTPBundle:Jobs:delete }
-    
-
->>>>>>> master
