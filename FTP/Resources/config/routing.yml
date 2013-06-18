@@ -24,20 +24,43 @@ _user_create:
     path: /user/create
     defaults: {_controller: FTPBundle:Users:getCreate }
     methods: GET
+    
+_job_create:
+    path: /job/create
+    defaults: {_controller: FTPBundle:Jobs:getCreate }
+    methods: GET
 
 __user_create:
     path: /user/create
     defaults: { _controller: FTPBundle:Users:postCreate }
     methods: POST
+    
+__job_create:
+    path: /job/create
+    defaults: { _controller: FTPBundle:Jobs:postCreate }
+    methods: POST
 
 _user_view:
     path: /user/view
     defaults: { _controller: FTPBundle:Users:view }
+    
+_job_view:
+    path: /job/view
+    defaults: { _controller: FTPBundle:Jobs:view }
 
 _user_delete:
     path: /user/delete/{id}
     defaults: { _controller: FTPBundle:Users:delete }
+<<<<<<< HEAD
 
 _file_upload:
     path: /files/upload
     defaults: { _controller: FTPBundle:Files:upload }
+=======
+    
+_job_delete:
+    path: /job/delete/{id}
+    defaults: { _controller: FTPBundle:Jobs:delete }
+    
+
+>>>>>>> master

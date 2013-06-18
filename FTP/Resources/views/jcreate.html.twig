@@ -1,0 +1,15 @@
+{% extends "FTPBundle::layout.html.twig" %}
+{% block title %}Create job{% endblock %}
+
+{% block content %}
+	<div class='section centered'>
+		<h3>New job</h3>
+		<form action='{{ path('__job_create') }}' method='POST'>
+		<table class='table table-striped table-bordered'>
+			<tr><td>JobName </td><td>{{ form_widget(form.JobName) }}</td></tr>
+			<tr><td>JobDescription</td><td>{{ form_widget(form.JobDescription) }}</td></tr>
+		</table>
+		<button class="btn btn-primary" type="submit">Create</button>
+		</form>
+	</div>
+{% endblock %}
