@@ -1,0 +1,3 @@
+services:
+    _notification:
+       class: Renegade\FTPBundle\Controller\NotificationController
